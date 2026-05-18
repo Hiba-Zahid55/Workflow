@@ -1,0 +1,11 @@
+Q2. Validation Automation using GitHub Actions
+1. Role of CI Pipelines in Continuous Validation
+Continuous Integration (CI) pipelines automate software validation whenever developers commit code
+changes. Their role includes:
+• Automatically building the application
+• Running automated tests
+• Detecting bugs early
+• Generating validation evidence and logs
+• Ensuring software quality before deployment
+• Supporting continuous monitoring and compliance
+Benefits include faster feedback, reduced manual testing effort, and improved software reliability
