@@ -1,11 +1,39 @@
-Q2. Validation Automation using GitHub Actions
-1. Role of CI Pipelines in Continuous Validation
-Continuous Integration (CI) pipelines automate software validation whenever developers commit code
-changes. Their role includes:
-• Automatically building the application
-• Running automated tests
-• Detecting bugs early
-• Generating validation evidence and logs
-• Ensuring software quality before deployment
-• Supporting continuous monitoring and compliance
-Benefits include faster feedback, reduced manual testing effort, and improved software reliability
+name: Validation Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Execute Tests
+        run: npm test
+
+      - name: Generate Validation Logs
+        run: |
+          mkdir validation-logs
+          echo "Validation completed successfully" > validation-logs/report.txt
+
+      - name: Upload Validation Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-evidence
+path: validation-logs/
